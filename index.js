@@ -17,5 +17,5 @@ app.use(
 app.use("", router);
 
 app.listen(3000, () => {
-  console.log("test!");
+  console.log("hello world!");
 });
