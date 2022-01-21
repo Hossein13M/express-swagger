@@ -14,7 +14,7 @@ app.use(
   swaggerUi.setup(specs, { explorer: true })
 );
 
-app.use("", router);
+app.use("/country", router);
 
 app.listen(3000, () => {
   console.log("hello world!");
