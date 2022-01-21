@@ -23,6 +23,8 @@ router.get("", (req, res) => {
  * /country/{code}:
  *  get:
  *    summary: Get an specific country
+ *    tags:
+ *      - Country
  *    parameters:
  *    - in: path
  *      name: code
