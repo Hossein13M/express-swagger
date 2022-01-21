@@ -1,7 +1,11 @@
-const { Router } = require("express");
+const express = require("express");
 const countries = require("./config/countries.json");
+const bodyParser = require("body-parser");
+const fs = require("fs");
+const app = express();
 
-const router = Router();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /**
  * @swagger
@@ -14,7 +18,7 @@ const router = Router();
  *       200:
  *         description: Returns an array of country name and their code.
  */
-router.get("", (req, res) => {
+app.get("", (req, res) => {
   return res.json({ countries: countries });
 });
 
@@ -36,7 +40,7 @@ router.get("", (req, res) => {
  *      '200':
  *        description: A successful response
  */
-router.get("/:code", async function (req, res) {
+app.get("/:code", async function (req, res) {
   const countryCode = req.params.code;
   let foundCountry = await countries.find(
     (country) => country.code === countryCode
@@ -44,4 +48,38 @@ router.get("/:code", async function (req, res) {
   res.json({ countries: foundCountry });
 });
 
-module.exports = router;
+/**
+ * @swagger
+ * /country:
+ *   post:
+ *     summary: adds a new country
+ *     tags:
+ *      - Country
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Country name
+ *                 example: Iran
+ *               code:
+ *                 type: number
+ *                 description: country code
+ *                 example: 98
+ *     responses:
+ *       201:
+ *         description: Country has been created
+ */
+app.post("", async function (req, res) {
+  countries.push(req.body);
+  fs.writeFile("./config/countries.json", JSON.stringify(countries), () => {
+    console.error("something is wrong in writing to json file");
+  });
+  res.json(req.body);
+});
+
+module.exports = app;
