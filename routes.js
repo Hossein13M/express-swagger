@@ -4,10 +4,12 @@ const countries = require("./config/countries.json");
 const router = Router();
 
 /**
- * @openapi
+ * @swagger
  * /country:
  *   get:
  *     description: Fetch List Of Countries!
+ *     tags:
+ *      - Country
  *     responses:
  *       200:
  *         description: Returns an array of country name and their code.
