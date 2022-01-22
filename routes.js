@@ -82,4 +82,44 @@ app.post("", async function (req, res) {
   res.json(req.body);
 });
 
+/**
+ * @swagger
+ * /country/{code}:
+ *   put:
+ *     summary: adds a new country
+ *     tags:
+ *      - Country
+ *     parameters:
+ *      - in: path
+ *        name: code
+ *        schema:
+ *          type: number
+ *          required: true
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Country name
+ *                 example: Iran
+ *     responses:
+ *       201:
+ *         description: Country has been created
+ */
+app.put("/:code", function (req, res) {
+  countries.map((country) => {
+    if (country.code === +req.params.code) {
+      country.name = req.body.name;
+    }
+  });
+
+  fs.writeFile("./config/countries.json", JSON.stringify(countries), () => {});
+
+  res.json(req.body);
+});
+
 module.exports = app;
