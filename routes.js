@@ -11,6 +11,7 @@ app.use(bodyParser.json());
  * @swagger
  * /country:
  *   get:
+ *     summary: get all countries
  *     description: Fetch List Of Countries!
  *     tags:
  *      - Country
@@ -86,7 +87,7 @@ app.post("", async function (req, res) {
  * @swagger
  * /country/{code}:
  *   put:
- *     summary: adds a new country
+ *     summary: update country name
  *     tags:
  *      - Country
  *     parameters:
