@@ -123,4 +123,35 @@ app.put("/:code", function (req, res) {
   res.json(req.body);
 });
 
+/**
+ * @swagger
+ * /country/{code}:
+ *  delete:
+ *    summary: Deletes an specific country
+ *    tags:
+ *      - Country
+ *    parameters:
+ *    - in: path
+ *      name: code
+ *      schema:
+ *        type: number
+ *      required: true
+ *    description: Get an specific country
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+app.delete("/:code", async function (req, res) {
+  const filteredCountries = countries.filter(
+    (country) => country.code !== +req.params.code
+  );
+
+  fs.writeFile(
+    "./config/countries.json",
+    JSON.stringify(filteredCountries),
+    () => {}
+  );
+  res.json({ countries: countries });
+});
+
 module.exports = app;
