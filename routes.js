@@ -77,9 +77,7 @@ app.get("/:code", async function (req, res) {
  */
 app.post("", async function (req, res) {
   countries.push(req.body);
-  fs.writeFile("./config/countries.json", JSON.stringify(countries), () => {
-    console.error("something is wrong in writing to json file");
-  });
+  fs.writeFile("./config/countries.json", JSON.stringify(countries), () => {});
   res.json(req.body);
 });
 
