@@ -1,15 +1,15 @@
 {
   "name": "express-swagger",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple CRUD APIs developed by ExpressJS and implementing Swagger on it",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["swagger", "express"],
+  "author": "Hossein Mousavi",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.1",
