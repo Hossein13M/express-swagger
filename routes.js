@@ -136,7 +136,7 @@ app.put("/:code", function (req, res) {
  *      required: true
  *    description: Get an specific country
  *    responses:
- *      '200':
+ *      '204':
  *        description: A successful response
  */
 app.delete("/:code", async function (req, res) {
