@@ -8,11 +8,11 @@ const options = {
         "Simple CRUD for indicating swagger implementation with Express",
       license: {
         name: "MIT",
-        url: "https://hmousavi.dev",
+        url: "https://hossein.dev",
       },
       contact: {
         name: "Hossein Mousavi",
-        url: "https://hmousavi.dev",
+        url: "https://hossein.dev",
         email: "dev.hosseinmousavi@gmail.com",
       },
     },
